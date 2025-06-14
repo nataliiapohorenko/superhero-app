@@ -1,54 +1,106 @@
-# React + TypeScript + Vite
+Superhero Management App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a full-stack web application for managing superheroes and their images. It includes features for creating, updating, listing, deleting heroes, and uploading images to Cloudinary.
 
-Currently, two official plugins are available:
+🧩 Technologies Used
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+    React 18+
+    
+    TypeScript
+    
+    TailwindCSS
+    
+    React Query (TanStack Query)
+    
+    Axios
+    
+    Vitest & React Testing Library for unit testing
 
-## Expanding the ESLint configuration
+💻 Frontend Setup
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+1. Install dependencies:
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+    npm install
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+2. Set up environment variables in .env:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+    VITE_API_URL=https://superhero-api-4bji.onrender.com
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+3. Start the development server:
+
+    npm run dev
+
+4. Run frontend tests:
+
+    npx vitest run
+
+🧪 Frontend Test Coverage:
+
+useHero, useHeroes, useCreateHero, useUpdateHero, useDeleteHero
+
+useUploadImages, useDeleteImage
+
+Tests written with React Testing Library and QueryClientProvider wrapper
+
+✅ Features Implemented
+1. Hero List
+
+Fetches a paginated list of superheroes from the backend.
+
+Displays hero cards in a responsive grid.
+
+Shows nickname and first image preview.
+
+🔍 2. Hero Details Modal
+
+Clicking a card opens a modal with:
+
+Full hero details (real name, origin description, superpowers, catch phrase).
+
+Carousel-like navigation for multiple images.
+
+➕ 3. Create Hero
+
+Form to create a new superhero.
+
+Inputs for nickname, real name, description, superpowers (comma-separated), catch phrase.
+
+File input for uploading multiple images.
+
+Image previews shown before submission.
+
+After successful creation, the app navigates back to the home page.
+
+✏️ 4. Edit Hero
+
+Loads existing hero data into form fields.
+
+Allows editing of any fields.
+
+Supports adding new images.
+
+Allows removing existing images (removal only finalized on Save).
+
+After saving, navigates back to the home page.
+
+🗑 5. Delete Hero
+
+Each card has a delete button with a confirmation modal.
+
+Upon confirming deletion:
+
+Hero is deleted from the backend.
+
+Associated images are deleted.
+
+React Query cache is invalidated.
+
+📄 6. Pagination
+
+5 heroes per page.
+
+Prev/Next controls.
+
+Disabled buttons at boundaries.
+
+
